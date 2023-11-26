@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         } 
 
        //当刚体速度小于-1的时候就证明下落了
-       if(rb.velocity.y<=-1)
+       if(rb.velocity.y<=-0.5)
        { 
             //这个时候给它加一个向下的力量
             m_Animator.SetBool("JumpDown",true);
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         
 
        //当刚体速度小于-1的时候就证明下落了
-       if(rb.velocity.y<=-1)
+       if(rb.velocity.y<=-0.5)
        { 
             //这个时候给它加一个向下的力量
             m_Animator.SetBool("JumpDown",true);
