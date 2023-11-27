@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Poop
+  - obstacle
+  - ground
+  - Ground
   layers:
   - Default
   - TransparentFX
