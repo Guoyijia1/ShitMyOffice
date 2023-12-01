@@ -23,9 +23,14 @@ public class RacingController : MonoBehaviour
     private float currentSpeed;
     private bool isSpeedSlowed = false;
 
-    public bool isGrounded;
+    private bool isGrounded = true;
 
     public bool FeverMode = false;
+
+    private bool NormalMode = false;
+    private bool GoToBeNormalMode = false;
+    private bool GoToBeFeverMode = false;
+
 
 
 
@@ -39,20 +44,23 @@ public class RacingController : MonoBehaviour
         StartCoroutine(ActivateFeverMode());
     }
 
-    void OnCollisionStay(Collision collision)
+
+
+    void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
-            isGrounded = true;
+
+            isGrounded = false;
         }
-            
+
     }
 
 
     private void Update()
     {
 
-        Debug.Log(currentSpeed);
+        //Debug.Log(currentSpeed);
 
         // Player input for turning
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -66,7 +74,7 @@ public class RacingController : MonoBehaviour
         }
         else
         {
-            //currentSpeed = normalSpeed;//?
+            currentSpeed = normalSpeed;//?
         }
 
 
@@ -88,6 +96,7 @@ public class RacingController : MonoBehaviour
         // z-axis
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
     }
+
 
     IEnumerator ActivateFeverMode()
     {
@@ -121,6 +130,12 @@ public class RacingController : MonoBehaviour
             
             //SlowDownSpeed();
 
+        }
+
+        if (collision.gameObject.CompareTag("ground"))
+        {
+
+            isGrounded = true;
         }
     }
 
@@ -160,7 +175,7 @@ public class RacingController : MonoBehaviour
         {
             //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);//能用
-            isGrounded = false;
+            //isGrounded = false;
 
             
         }
