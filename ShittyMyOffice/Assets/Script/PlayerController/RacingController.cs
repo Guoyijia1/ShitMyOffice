@@ -10,7 +10,8 @@ public class RacingController : MonoBehaviour
     public float turnSpeed = 3f;   // Turning speed of the car
     public float jumpForce = 5f;   
     public float accelerationSpeed = 5f;
-    
+    public float AccSpeed;
+
 
     public Vector3 jump;
 
@@ -41,6 +42,8 @@ public class RacingController : MonoBehaviour
         currentSpeed = normalSpeed;
         jump = new Vector3(0.0f, 5.0f, 0.0f);
 
+        AccSpeed = 1f;
+
         StartCoroutine(ActivateFeverMode());
     }
 
@@ -70,11 +73,13 @@ public class RacingController : MonoBehaviour
 
         if (FeverMode)
         {
-            currentSpeed = feverSpeed;
+            //currentSpeed = feverSpeed;
+            AccSpeed = 3f;
         }
         else
         {
             currentSpeed = normalSpeed;//?
+            AccSpeed = 1f;
         }
 
 
@@ -94,7 +99,7 @@ public class RacingController : MonoBehaviour
         }
 
         // z-axis
-        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime * AccSpeed);
     }
 
 
